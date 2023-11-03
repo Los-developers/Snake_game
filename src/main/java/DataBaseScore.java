@@ -1,72 +1,40 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.swing.*;
+import java.sql.*;
 
 public class DataBaseScore {
     // aqui la implementacion de una BD para el Score
 
     public static Connection getConexion() {
-        String connectionUrl = "jdbc:sqlserver://DESKTOP-ITA86RD\\SQLEXPRESS;databaseName=snake_DB;user=sa;password=12345;";
+        String connectionUrl = "jdbc:mysql://localhost:3306/bd_score?serverTimezone=UTC";   // la URL que debes cambiar segun el video de guia
+        String username = "root";                  //aqui tu usuario root o el que hayas creado
+        String password = "¿King?1245";                // aqui la contraseña de tu usuario en MySQL
+
+
 
         try {
-            Connection con = DriverManager.getConnection(connectionUrl);
-            return con;
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
+            Connection conectar = DriverManager.getConnection(connectionUrl,username,password);
+            Statement statement = conectar.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * from Puntaje");
+
+            //asegurate de poner los atributos correctos de tu , para poder imprimir sus valores
+            while(resultSet.next()){
+                System.out.println(resultSet.getString("id") + " | "  + resultSet.getString("nombre") + " | " + resultSet.getString("puntaje"));
+            }
+
+            JOptionPane.showMessageDialog(null,"La conexion fue exitosa ;*");
+            conectar.close();
+            statement.close();
+            resultSet.close();
+
+            return conectar;
+        } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
 
-    public static void insertarPuntaje(Connection conexion, String nombre, int puntaje) {
-        String insercion = "INSERT INTO score (NOMBRE, SCORE) VALUES (?, ?)";
-        try {
-            PreparedStatement statement = conexion.prepareStatement(insercion);
-            statement.setString(1, nombre);
-            statement.setInt(2, puntaje);
-            statement.executeUpdate();
-            System.out.println("Puntaje añadido: " + nombre + " - " + puntaje);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static void verPuntajes(Connection conexion) {
-        String consulta = "SELECT * FROM score";
-        try {
-            PreparedStatement statement = conexion.prepareStatement(consulta);
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt("ID");
-                String nombre = resultSet.getString("NOMBRE");
-                int puntaje = resultSet.getInt("SCORE");
-                System.out.println("ID: " + id + ", Nombre: " + nombre + ", Puntaje: " + puntaje);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void main(String[] args) {
-        Connection conexion = getConexion();
-
-     
-       insertarPuntaje(conexion, "Victor", 2000);
-
-     
-        System.out.println("Puntajes existentes:");
-        verPuntajes(conexion);
-
-       
-        try {
-            conexion.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        // alt + shift + f
+        getConexion();
     }
+
 }
