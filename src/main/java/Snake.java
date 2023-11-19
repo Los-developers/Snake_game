@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Snake {
 
+
+
     private List<Point> body;
     private int direction;
     private boolean isAccelerated;
@@ -17,6 +19,10 @@ public class Snake {
         body.add(new Point(5, 5));
         direction = KeyEvent.VK_RIGHT;
         isAccelerated = false;
+    }
+
+    public List<Point> getBody() {
+        return body;
     }
 
     public void move() {

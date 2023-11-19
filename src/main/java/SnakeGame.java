@@ -89,6 +89,22 @@ public class SnakeGame extends JFrame implements ActionListener, KeyListener {
     private void checkCollision() {
         if (snake.checkCollision()) {
             gameOver();
+        } else {
+            // Verificar colisión con el rectángulo amarillo
+            //int headX = snake.getBody().getFirst().x;
+            int headY = snake.getBody().getFirst().y;
+
+            // Coordenadas del rectángulo amarillo
+            //int rectX = 0;
+            int rectY = 1;
+            //int rectWidth = WIDTH * BLOCK_SIZE * 50;
+            int rectHeight = 1 * BLOCK_SIZE;
+
+
+
+            if (headY <= rectY && headY <= rectY + rectHeight) {
+                gameOver();
+            }
         }
     }
 
@@ -105,7 +121,7 @@ public class SnakeGame extends JFrame implements ActionListener, KeyListener {
 
     private void gameOver() {
         timer.stop();
-        JOptionPane.showMessageDialog(this, "Te chocaste xd Tu puntuacion: " + snake.getLength());
+        JOptionPane.showMessageDialog(this, "Te chocaste xd Tu puntuacion: " + (snake.getLength() -1));
         System.exit(0);
     }
 
