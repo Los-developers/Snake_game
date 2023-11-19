@@ -87,12 +87,13 @@ public class SnakeGame extends JFrame implements ActionListener, KeyListener {
     public void keyReleased(KeyEvent e) {}
 
     private void checkCollision() {
-        if (snake.checkCollision()) {
+        if (snake.checkCollision()){
             gameOver();
         } else {
             // Verificar colisión con el rectángulo amarillo
             //int headX = snake.getBody().getFirst().x;
             int headY = snake.getBody().getFirst().y;
+
 
             // Coordenadas del rectángulo amarillo
             //int rectX = 0;
