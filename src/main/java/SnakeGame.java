@@ -117,3 +117,4 @@ public class SnakeGame extends JFrame implements ActionListener, KeyListener {
     }
 }
 
+//rama de simon
