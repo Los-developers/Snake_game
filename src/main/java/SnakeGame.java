@@ -44,7 +44,7 @@ public class SnakeGame extends JFrame implements ActionListener, KeyListener {
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Arial", Font.BOLD, 16));
 
-                g.drawString("Score: " + snake.getScore(), 300, 30);
+                g.drawString("Score: " + snake.getScore(), (WIDTH * BLOCK_SIZE * 45)/2 , 30);
                 g.drawString("Player: Saymon", WIDTH * BLOCK_SIZE / 2000, 30);
 
                 // Dibujar la serpiente y la comida
