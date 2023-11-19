@@ -37,7 +37,7 @@ public class SnakeGame extends JFrame implements ActionListener, KeyListener {
                 super.paintComponent(g);
                 setBackground(Color.BLACK);
 
-                g.setColor(Color.YELLOW);
+                g.setColor(Color.PINK);
                 g.fillRect(0, 0, WIDTH * BLOCK_SIZE * 50, 2 * BLOCK_SIZE);
 
 
