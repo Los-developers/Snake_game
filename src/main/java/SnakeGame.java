@@ -17,6 +17,8 @@ public class SnakeGame extends JFrame implements ActionListener, KeyListener {
     private int originalTimerDelay;
     private JPanel gamePanel;
 
+    private Color colores[] = {Color.red,Color.BLUE,Color.CYAN,Color.GREEN,Color.ORANGE,Color.magenta,Color.PINK,Color.GRAY};
+
     public SnakeGame() {
         setTitle("Panelcito");
         setSize(WIDTH * BLOCK_SIZE, HEIGHT * BLOCK_SIZE);
@@ -39,7 +41,22 @@ public class SnakeGame extends JFrame implements ActionListener, KeyListener {
 
                 g.setColor(Color.YELLOW);
                 g.fillRect(0, 0, WIDTH * BLOCK_SIZE * 50, 2 * BLOCK_SIZE);
-
+                int yAux = 0;
+                for (int i = 0; i < 7; i++) {
+                    int ramdom = (int) (Math.random()*8);
+                    g.setColor(colores[ramdom]);
+                    g.fillRect(0, yAux = yAux +40, WIDTH * BLOCK_SIZE * 50, 2 * BLOCK_SIZE);
+                }
+                for (int j = 0; j < 7; j++) {
+                    int ramdom = (int) (Math.random()*8);
+                    g.setColor(colores[ramdom]);
+                    g.fillRect(0, yAux = yAux +40, WIDTH * BLOCK_SIZE * 50, 2 * BLOCK_SIZE);
+                }
+                for (int k = 0; k < 7; k++) {
+                    int ramdom = (int) (Math.random()*8);
+                    g.setColor(colores[ramdom]);
+                    g.fillRect(0, yAux = yAux +40, WIDTH * BLOCK_SIZE * 50, 2 * BLOCK_SIZE);
+                }
 
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Arial", Font.BOLD, 16));
